@@ -1,3 +1,4 @@
+//should do url validation 
 function checkForName(inputText) {
     console.log("::: Running checkForName :::", inputText);
     let names = [
