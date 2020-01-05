@@ -9,32 +9,41 @@
     <body>
 
         <header>
-            <div class="">
-                Logo
+            <div class="logo">
+                <img src="/src/client/styles/Full-transparent-background-512.png" height = 35px width = 75px>
+                
             </div>
-            <div class="">
-                navigation
-            </div>
+            
         </header>
 
         <main>
             <section>
                 <form class="" onsubmit="return Client.handleSubmit(event)">
-                    <input id="name" type="text" name="input" value="" onblur="onBlur()" placeholder="Name">
+                    <input id="name" type="text" name="input" value="" onblur="onBlur()" placeholder="Please submit the url of your article">
                     <input type="submit" name="" value="submit" onclick="return Client.handleSubmit(event)" onsubmit="return Client.handleSubmit(event)">
                 </form>
             <section>
 
             <section>
-                <strong>Form Results:</strong>
+                
                 <div id="isurl"></div>
-                <div id="results"></div>
+                <div id="result"></div>
+                <div id="results1"></div>
+                <div id="results2"></div>
             </section>
         </main>
 
         <footer>
-            <p>This is a footer</p>
+            
         </footer>
-
+        <script>
+                // Check that service workers are supported
+                if ('serviceWorker' in navigator) {
+                    // Use the window load event to keep the page load performant
+                    window.addEventListener('load', () => {
+                        navigator.serviceWorker.register('/service-worker.js');
+                    });
+                }
+            </script>
     </body>
 </html>

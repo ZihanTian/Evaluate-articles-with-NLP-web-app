@@ -5,12 +5,10 @@ dotenv.config();
 //console.log(`Your API key is ${process.env.API_KEY}`);
 var path = require('path')
 const express = require('express')
-//const mockAPIResponse = require('./mockAPI.js')
-
 const app = express()
-//const bodyParser = require('body-parser')
-//app.use(bodyParser.urlencoded({ extended: false }));
-//app.use(bodyParser.json());
+const bodyParser = require('body-parser')
+app.use(bodyParser.urlencoded({ extended: false }));
+app.use(bodyParser.json());
 app.use(express.static('dist'))
 app.use(cors())
 console.log(__dirname)
@@ -32,32 +30,29 @@ app.listen(8081, function () {
 })
 
 app.post('/test', function (req, res) {
-    //res.setHeader('Access-Control-Allow-Origin', 'http://localhost:8082');
-    //res.setHeader('Access-Control-Allow-Origin', 'http://localhost:8080');
-    inputurl = req;
-    console.log(inputurl,'this is my url')
-    
-    //res.send(mockAPIResponse);
+    inputurl = req.body.url;
+    textapi.sentiment({
+      url: inputurl
+  },
+  
+  (err,resp)=>{
+      
+      if (err ===null){
+          console.log(resp);
+        res.json({
+              message1:resp.polarity,
+              message2:resp.polarity_confidence,
+              message3:resp.subjectivity,
+              message4:resp.subjectivity_confidence
+          });
+      }else{
+          res.json({
+             message: 'failText'
+          });
+      }
+  }
+  )
 })
 
 
 
-//textapi.sentiment({
- //   url: 'http://techcrunch.com/2015/07/16/microsoft-will-never-give-up-on-mobile',
-//},
-
-//(err,resp)=>{
-    
-//    if (err ===null){
-        //console.log(resp);
-        //res.json({
-         //   message1:resp.polarity,
-          //  message2: resp.polarity_confidence
-        //});
- //   }else{
-       // res.json({
-        //   message: 'failText'
-       // });
-//    }
-//}
-//)

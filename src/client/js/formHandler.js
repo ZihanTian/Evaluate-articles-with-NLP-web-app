@@ -1,4 +1,5 @@
 function handleSubmit(event) {
+  
     event.preventDefault()
     const postData = async ( url = '', data = {})=>{
         console.log(data,'here')
@@ -27,18 +28,28 @@ function handleSubmit(event) {
     
     //console.log("::: Form Submitted :::")
     //fetch('http://localhost:8081/test')
-    
+    if (Client.checkForName(formText.url==='What you input is not a valid url, please try again.')){
+      document.getElementById('result').innerHTML  = '';
+       document.getElementById('results1').innerHTML = '';
+       document.getElementById('results2').innerHTML = '';
+    }
     postData('http://localhost:8081/test',formText)
-    //console.log(formText)
-    //Client.checkForName(formText)
-    //.then(res => res.json())
-    //.then(function(res) {
-     //   document.getElementById('results').innerHTML = res.message1
-    //})
+    .then(function(res) {
+      //console.log(res)
+      if (res.message1){
+        document.getElementById('result').innerHTML  = `Analyze successfully!`
+       document.getElementById('results1').innerHTML = `The polarity of this article is ${res.message1} with confidence of ${res.message2}.`
+       document.getElementById('results2').innerHTML = `This article is ${res.message3} with confidence of ${res.message4}.`
+      }else{
+        document.getElementById('result').innerHTML = `Fail to analyze it. Sorry.`
+
+      }
+    })
     
     
 }
 
 export { handleSubmit }
+
 
 
