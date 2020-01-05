@@ -2,7 +2,7 @@
 
 ### Your project must:
 
-- [ ] Be set up with Webpack, Express, Node, and Sass, and Service Workers
+- [ ] Be 
 
 - [ ] Have separate dev and prod configurations for Webpack
 
